@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+<div class="card-body">
+    <h3 class="card-title text-center text-info">Login</h3>
+    <form id="login-form" class="form" action="" method="post">
+        <div class="form-group">
+            <label for="username" class="text-info ">E-Mail:</label><br>
+            <input type="text" name="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password" class="text-info">Password:</label><br>
+            <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="remember-me" class="text-info" style="margin-top: 20px;"><span>Remember me   </span><span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br><br>
+            <a href="forgotpassword.html" class="text-info">Forgot Password</a>
+            <button class="btn btn-info" style="margin-left:340px;">Login</button>
+            <input type="button" onclick="location.href='/secure/signin'" value='Sign In' class="btn btn-info" style="margin-left: 335px; margin-top:10px;">
+
+
+    </form>
+</div>
