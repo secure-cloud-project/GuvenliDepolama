@@ -12,9 +12,9 @@ namespace GuvenliDepolama.Controllers
         }
         
         [HttpPost]
-        public string SignIn(User item)
+        public JsonResult SignIn(User item)
         {
-            return "";
+            return Json(new { isOk = true }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Login()
@@ -23,9 +23,9 @@ namespace GuvenliDepolama.Controllers
         }
 
         [HttpPost]
-        public string Login(User item)
+        public JsonResult Login(User item)
         {
-            return "";
+            return Json(new { isOk = true }, JsonRequestBehavior.AllowGet);
         }
 
     }
