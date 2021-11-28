@@ -1,6 +1,7 @@
 ﻿using GuvenliDepolama.Manager;
 using GuvenliDepolama.Models;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GuvenliDepolama.Controllers
 {
@@ -45,16 +46,37 @@ namespace GuvenliDepolama.Controllers
                 SqlMnager sql = new SqlMnager();
                 var user = sql.CheckUser(item.Mail, item.Password);
                 if (user != null)
+                {
                     isOK = true;
+                    SetLogin(user);                    
+                }
             }
             catch (System.Exception)
             {
 
                 throw;
-            }
+            }            
 
             return Json(new { isOk = isOK }, JsonRequestBehavior.AllowGet);
         }
 
+        //[HttpPost]
+        public ActionResult LogOut()
+        {
+            SetLogOut();
+            return RedirectToAction("/Login");
+        }
+
+        private void SetLogin(User user)
+        {
+            //FormsAuthentication.SetAuthCookie(user.Name + " " + user.SurName, true);
+            Session["User"] = user;
+        }
+
+        private void SetLogOut()
+        {
+            //FormsAuthentication.SignOut();
+            Session["User"] = "";
+        }
     }
 }

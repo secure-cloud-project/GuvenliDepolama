@@ -12,8 +12,10 @@
                 url: "/Secure/Login",
                 data: param,
                 success: function (v) {
-                    if (v.isOk)
-                        alert("Login işlemi başarılı");
+                    if (v.isOk) {
+                        location.href = "/Home";
+                       //alert("Login işlemi başarılı");
+                    }
                     else
                         alert("Mail veya şifre hatalı");
                 },

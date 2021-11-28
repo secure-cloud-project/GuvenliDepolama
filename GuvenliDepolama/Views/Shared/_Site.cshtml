@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var UserName = "";
+    var isLogin = false;
+    if (Session["User"] != null && Session["User"] != "")
+    {
+        UserName = ((GuvenliDepolama.Models.User)Session["User"]).Name + " " + ((GuvenliDepolama.Models.User)Session["User"]).SurName;
+        isLogin = true;
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,11 +28,24 @@
             <a class="navbar-brand" href="#">
                 <img src="~/Content/Images/logo.png" class="img-fluid logo text-info" style="height: 64px; width:64px; margin-top: -24px;" alt="" />
             </a>
-            <a href="/Secure/Login">
-                <button type="button" class="btn btn-primary" style="margin-left: 1150px;">
-                    Go to your Drive
-                </button>
-            </a>
+            @if (isLogin)
+            {
+                <span style="color:wheat">Merhaba @UserName</span>
+                <a href="/Secure/LogOut">
+                    <button type="button" class="btn btn-primary" style="margin-left: 1150px;">
+                        Log out
+                    </button>
+                </a>
+            }
+            else
+            {
+                <a href="/Secure/Login">
+                    <button type="button" class="btn btn-primary" style="margin-left: 1150px;">
+                        Go to your Drive
+                    </button>
+                </a>
+            }
+
         </div>
     </nav>
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:-20px; height: 92%;">

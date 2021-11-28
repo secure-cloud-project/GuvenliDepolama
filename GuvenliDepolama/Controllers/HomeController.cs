@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuvenliDepolama.Attribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace GuvenliDepolama.Controllers
 {
     public class HomeController : Controller
     {
+        //[Session]
         public ActionResult Index()
         {
             return View();
