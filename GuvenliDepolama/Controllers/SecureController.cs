@@ -1,4 +1,5 @@
-﻿using GuvenliDepolama.Models;
+﻿using GuvenliDepolama.Manager;
+using GuvenliDepolama.Models;
 using System.Web.Mvc;
 
 namespace GuvenliDepolama.Controllers
@@ -14,7 +15,20 @@ namespace GuvenliDepolama.Controllers
         [HttpPost]
         public JsonResult SignIn(User item)
         {
-            return Json(new { isOk = true }, JsonRequestBehavior.AllowGet);
+            var isOK = false;
+            var err = "";
+            try
+            {
+                SqlMnager sql = new SqlMnager();
+                err = sql.AddUser(item);
+                isOK = err.Length == 0;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }          
+
+            return Json(new { isOk = isOK,Msj = err }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Login()
@@ -25,7 +39,21 @@ namespace GuvenliDepolama.Controllers
         [HttpPost]
         public JsonResult Login(User item)
         {
-            return Json(new { isOk = true }, JsonRequestBehavior.AllowGet);
+            var isOK = false;            
+            try
+            {
+                SqlMnager sql = new SqlMnager();
+                var user = sql.CheckUser(item.Mail, item.Password);
+                if (user != null)
+                    isOK = true;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+            return Json(new { isOk = isOK }, JsonRequestBehavior.AllowGet);
         }
 
     }

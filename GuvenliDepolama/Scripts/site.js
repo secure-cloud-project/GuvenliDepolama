@@ -14,6 +14,8 @@
                 success: function (v) {
                     if (v.isOk)
                         alert("Login işlemi başarılı");
+                    else
+                        alert("Mail veya şifre hatalı");
                 },
                 error: function () {
                     alert("Beklenmeyen bir hata meydana geldi.");
@@ -36,8 +38,11 @@
                 url: "/Secure/SignIn",
                 data: param,
                 success: function (v) {
+                    debugger;
                     if (v.isOk)
-                        alert("Signin işlemi başarılı");
+                        alert("kayıt işlemi başarılı");
+                    else
+                        alert(v.Msj);
                 },
                 error: function () {
                     alert("Beklenmeyen bir hata meydana geldi.");
